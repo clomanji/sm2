@@ -12,6 +12,9 @@
 (defn- first-response? [response]
   (nil? (:index response)))
 
+(defn- second-response? [response]
+  (= (:index response) 0))
+
 (defn- days-to-recall [{:keys [easiness-factor days-to-recall]}]
   (* easiness-factor days-to-recall))
 
@@ -22,7 +25,7 @@
         (< (:quality response) 3)
         (assoc first-recall :easiness-factor (:easiness-factor response))
 
-        (= (:index response) 0)
+        (second-response? response)
         (assoc second-recall :easiness-factor (:easiness-factor response))
 
         :else
