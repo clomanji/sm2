@@ -8,7 +8,10 @@
                  [org.clojure/clojurescript "1.9.227"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
-            [lein-doo "0.1.6"]]
+            [lein-doo "0.1.6"]
+            [lein-auto "0.1.2"]]
+
+  :auto {"test" {:file-pattern #"\.(clj|cljs|cljc|edn)$"}}
 
   :clean-targets ^{:protect false} ["resources/public/js" "target" "out"]
 
