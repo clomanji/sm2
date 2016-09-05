@@ -16,7 +16,7 @@
   (= (:index response) 0))
 
 (defn- days-to-recall [{:keys [easiness-factor days-to-recall]}]
-  (* easiness-factor days-to-recall))
+  (int (* easiness-factor days-to-recall)))
 
 (defn next-recall [response]
   (cond (first-response? response)
