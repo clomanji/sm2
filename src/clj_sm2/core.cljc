@@ -17,28 +17,28 @@
 (defn- second-response? [response]
   (= (:index response) 0))
 
-(defn- days-to-recall [easiness-factor days-to-recall]
+(defn- compute-days-to-recall [easiness-factor days-to-recall]
   (int (* (/ easiness-factor 100) days-to-recall)))
 
 (defn- delta-easiness-factor [q]
   (int (+ (* q q (- 2)) (* q 28) (- 80))))
 
-(defn- easiness-factor [{:keys [easiness-factor quality]}]
+(defn- compute-easiness-factor [{:keys [easiness-factor quality]}]
   (max minimum-easiness-factor
        (+ easiness-factor (delta-easiness-factor quality))))
 
-(defn next-recall [response]
+(defn next-recall [{:keys [easiness-factor quality index days-to-recall] :as response}]
   (cond (first-response? response)
         first-recall
 
-        (< (:quality response) 3)
-        (assoc first-recall :easiness-factor (:easiness-factor response))
+        (< quality 3)
+        (assoc first-recall :easiness-factor easiness-factor)
 
         (second-response? response)
-        (assoc second-recall :easiness-factor (:easiness-factor response))
+        (assoc second-recall :easiness-factor easiness-factor)
 
         :else
-        (let [easiness-factor (easiness-factor response)]
-          {:index (inc (:index response))
-           :days-to-recall (days-to-recall easiness-factor (:days-to-recall response))
-           :easiness-factor easiness-factor})))
+        (let [new-easiness-factor (compute-easiness-factor response)]
+          {:index (inc index)
+           :days-to-recall (compute-days-to-recall new-easiness-factor days-to-recall)
+           :easiness-factor new-easiness-factor})))
