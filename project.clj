@@ -1,6 +1,6 @@
-(defproject clomanji/clj-sm2 "0.1.0-SNAPSHOT"
+(defproject clomanji/sm2 "0.1.0-SNAPSHOT"
   :description "A Clojure(script) library implementing the SuperMemo 2 algorithm"
-  :url "https://github.com/clomanji/clj-sm2/blob/master/README.md"
+  :url "https://github.com/clomanji/sm2/blob/master/README.md"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
@@ -17,7 +17,7 @@
 
   :cljsbuild {:builds [{:id "min"
                         :source-paths ["src"]
-                        :compiler {:main clj-sm2.core
+                        :compiler {:main sm2.core
                                    :output-to "resources/deploy/js/compiled/app.js"
                                    :optimizations :advanced
                                    :closure-defines {goog.DEBUG false}
@@ -26,6 +26,6 @@
                        {:id "unit-tests"
                         :source-paths ["src" "test"]
                         :compiler {:output-to "out/unit_tests.js"
-                                   :main 'clj-sm2.unit-tests
+                                   :main 'sm2.unit-tests
                                    :target :nodejs
                                    :optimizations :none}}]})

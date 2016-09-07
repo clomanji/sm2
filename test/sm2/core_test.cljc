@@ -1,6 +1,6 @@
-(ns clj-sm2.core-test
+(ns sm2.core-test
   (:require
-    [clj-sm2.core :refer [next-recall]]
+    [sm2.core :refer [next-recall]]
 
     #?(:cljs [cljs.test :refer-macros [deftest is testing]]
        :clj [clojure.test :refer :all])))

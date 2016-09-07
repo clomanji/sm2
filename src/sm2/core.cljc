@@ -1,4 +1,4 @@
-(ns clj-sm2.core)
+(ns sm2.core)
 
 (def ^:private minimum-easiness-factor 130)
 
