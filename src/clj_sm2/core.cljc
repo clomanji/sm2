@@ -1,9 +1,11 @@
 (ns clj-sm2.core)
 
+(def ^:private minimum-easiness-factor 130)
+
 (def ^:private first-recall
   {:index 0
    :days-to-recall 1
-   :easiness-factor 2.5})
+   :easiness-factor 250})
 
 (def ^:private second-recall
   {:index 1
@@ -15,8 +17,15 @@
 (defn- second-response? [response]
   (= (:index response) 0))
 
-(defn- days-to-recall [{:keys [easiness-factor days-to-recall]}]
-  (int (* easiness-factor days-to-recall)))
+(defn- days-to-recall [easiness-factor days-to-recall]
+  (int (* (/ easiness-factor 100) days-to-recall)))
+
+(defn- delta-easiness-factor [q]
+  (int (+ (* q q (- 2)) (* q 28) (- 80))))
+
+(defn- easiness-factor [{:keys [easiness-factor quality]}]
+  (max minimum-easiness-factor
+       (+ easiness-factor (delta-easiness-factor quality))))
 
 (defn next-recall [response]
   (cond (first-response? response)
@@ -29,6 +38,7 @@
         (assoc second-recall :easiness-factor (:easiness-factor response))
 
         :else
-        {:index (inc (:index response))
-         :days-to-recall (days-to-recall response)
-         :easiness-factor 2.5}))
+        (let [easiness-factor (easiness-factor response)]
+          {:index (inc (:index response))
+           :days-to-recall (days-to-recall easiness-factor (:days-to-recall response))
+           :easiness-factor easiness-factor})))
