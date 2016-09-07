@@ -1,4 +1,4 @@
-(defproject clj-sm2 "0.1.0-SNAPSHOT"
+(defproject clomanji/clj-sm2 "0.1.0-SNAPSHOT"
   :description "A Clojure(script) library implementing the SuperMemo 2 algorithm"
   :url "https://github.com/clomanji/clj-sm2/blob/master/README.md"
   :license {:name "Eclipse Public License"
@@ -14,7 +14,6 @@
   :auto {"test" {:file-pattern #"\.(clj|cljs|cljc|edn)$"}}
 
   :clean-targets ^{:protect false} ["resources/public/js" "target" "out"]
-
 
   :cljsbuild {:builds [{:id "min"
                         :source-paths ["src"]
