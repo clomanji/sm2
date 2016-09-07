@@ -1,6 +1,6 @@
 (defproject clj-sm2 "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A Clojure(script) library implementing the SuperMemo 2 algorithm"
+  :url "https://github.com/clomanji/clj-sm2/blob/master/README.md"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
