@@ -16,3 +16,4 @@ index.ios.js
 resources/public/css/
 .lein-repl-history
 .lein-failures
+pom.xml
