@@ -27,7 +27,10 @@
   (max minimum-easiness-factor
        (+ easiness-factor (delta-easiness-factor quality))))
 
-(defn next-recall [{:keys [easiness-factor quality index days-to-recall] :as response}]
+(defn- add-if-should-be-repeated [previous-quality recall]
+  (assoc recall :should-be-repeated (< previous-quality 4)))
+
+(defn- create-next-recall [{:keys [easiness-factor quality index days-to-recall] :as response}]
   (cond (first-response? response)
         first-recall
 
@@ -42,3 +45,8 @@
           {:index (inc index)
            :days-to-recall (compute-days-to-recall new-easiness-factor days-to-recall)
            :easiness-factor new-easiness-factor})))
+
+(defn next-recall [{:keys [quality] :as response}]
+  (->> response
+       create-next-recall
+       (add-if-should-be-repeated quality)))
