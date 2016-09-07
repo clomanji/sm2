@@ -1,4 +1,4 @@
-# clj-sm2
+# sm2
 
 A Clojure(script) library implementing the [SuperMemo 2 algorithm](https://www.supermemo.com/english/ol/sm2.htm.)
 
