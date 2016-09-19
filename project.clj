@@ -1,4 +1,4 @@
-(defproject clomanji/sm2 "0.1.0-SNAPSHOT"
+(defproject clomanji/sm2 "0.1.1-SNAPSHOT"
   :description "A Clojure(script) library implementing the SuperMemo 2 algorithm"
   :url "https://github.com/clomanji/sm2/blob/master/README.md"
   :license {:name "Eclipse Public License"
